@@ -1,36 +1,37 @@
-# Angular2-Interview-Questions
+# Angular-Interview-Questions
 
-This file contains a number of Angular 2.0 interview questions that can be used when vetting potential candidates. It is by no means recommended to use every single question here on the same candidate (that would take hours). Choosing a few items from this list should help you vet the intended skills you require. 
+This file contains a number of Angular 4.0.0 and higher interview questions that can be used when vetting potential candidates. It is by no means recommended to use every single question here on the same candidate (that would take hours). Choosing a few items from this list should help you vet the intended skills you require.
 
-A developer is perfectly able to use Angular to build applications without being able to answer all of these questions. Addition to having a source for interview questions, my intention is to encourage interested developers to think about these questions. I regularly teach Angular 2 workshops. Oftentimes I do not get enough questions due to limited exposure working with the framework. These questions are the ones I personally needed to answer, to be able lead a team developing our first Angular 2 production application at Autodesk A360.
+A developer is perfectly able to use Angular to build applications without being able to answer all of these questions. Addition to having a source for interview questions, my intention is to encourage interested developers to think about these questions. I regularly teach Angular workshops. Oftentimes I do not get enough questions due to limited exposure working with the framework. These questions are the ones I personally needed to answer, to be able lead a team developing our first Angular production application at Autodesk A360.
 
-**Note:** Keep in mind that many of these questions are open-ended and could lead to interesting discussions that tell you more about the person's capabilities than a straight answer would. 
+**Note:** Keep in mind that many of these questions are open-ended and could lead to interesting discussions that tell you more about the person's capabilities than a straight answer would.
 
 ## Table of Contents
 
-  1. [Animations Questions](#animations-questions)
-  1. [Architecture Questions](#architecture-questions)
-  1. [API Questions](#api-questions)
-  1. [Template Questions](#template-questions)
-  1. [Component Questions](#component-questions)
-  1. [Component Interaction & State Management Questions](#component-interaction-&-state-management-questions)
-  1. [Forms Questions](#forms-questions)
-  1. [General Questions](#general-questions)
-  1. [Services Questions](#services-questions)
-  1. [Structural Directives Questions](#structural-directives-questions)
-  1. [Styling Questions](#styling-questions)
-  1. [Style Guide Questions](#style-guide-questions)
-  1. [Testing Questions](#testing-questions)
-  1. [Performance Questions](#performance-questions)
-  1. [Coding Questions](#coding-questions)
-  1. [Fun Questions](#fun-questions)
+* [Animations Questions](#animations-questions)
+* [Architecture Questions](#architecture-questions)
+* [API Questions](#api-questions)
+* [Template Questions](#template-questions)
+* [Component Questions](#component-questions)
+* [Component Interaction & State Management Questions](#component-interaction-&-state-management-questions)
+* [Forms Questions](#forms-questions)
+* [General Questions](#general-questions)
+* [Services Questions](#services-questions)
+* [Structural Directives Questions](#structural-directives-questions)
+* [Styling Questions](#styling-questions)
+* [Style Guide Questions](#style-guide-questions)
+* [Testing Questions](#testing-questions)
+* [Performance Questions](#performance-questions)
+* [JavaScript Questions](#javascript-questions)
+* [Coding Questions](#coding-questions)
+* [Fun Questions](#fun-questions)
 
 
 #### General Questions:
 
-* What did you learn about Angular 2.0 yesterday/this week?
-* What are some of the reasons you would choose to use Angular 2.0 in your project?
-* What did you like about working with Angular 2.0?
+* What did you learn about Angular yesterday/this week?
+* What are some of the reasons you would choose to use Angular in your project?
+* What did you like about working with Angular?
 * How do you keep your Angular code more readable and maintainable?
 
 #### Animations Questions:
@@ -44,12 +45,20 @@ A developer is perfectly able to use Angular to build applications without being
 
 #### API Questions:
 
-* What does this line do:
+* What does this code do:
 
+```ts
+@HostBinding('class.valid') isValid;
 ```
-  @HostBinding('[class.valid]') isValid;
 
+```html
+<div *ngIf='someObservableData | async as data; else loading'>{{data}}</div>
+
+<ng-template #loading>
+  Loading Data...
+</ng-template>
 ```
+
 * Why would you use renderer methods instead of using native element methods?
 * What is the  point of calling renderer.invokeElementMethod(rendererEl, methodName)?
 * How would you control size of an element on resize of the window in a component?
@@ -75,10 +84,19 @@ A developer is perfectly able to use Angular to build applications without being
 * How would you pass data from a parent component to a child component?
 * How would you pass data from a child component to a parent component?
 * Which components will be notified when an event is emitted?
+* Tell me about the different ways how you would get data to your components from a service and talk about why would you use one way vs the other?
+* How would you use cached data?
 
 #### Forms Questions:
 
 * When do you use template driven vs model driven forms? Why?
+* How do you submit a form?
+* What's the difference between `NgForm`, `FormGroup`, and `FormControl`? How do they work together?
+* What's the advantage of using `FormBuilder`?
+* How do you add form validation to a form built with `FormBuilder`?
+* What's the difference between `dirty`, `touched`, and `pristine` on a form element?
+* How can you access validation errors in the template to display error messages?
+* What is async validation and how is it done?
 
 #### NgModules Questions:
 
@@ -98,7 +116,8 @@ A developer is perfectly able to use Angular to build applications without being
 * How are the services injected to your application?
 * How do you unit test a service with a dependency?
 * Why is it a bad idea to create a new service in a component like the one below?
-```
+
+```ts
 let service = new DataService();
 ```
 
@@ -121,7 +140,8 @@ let service = new DataService();
 * What selector force a style down through the child component tree into all the child component views?
 * What does :host-context() pseudo-class selector targets?
 * What does the following css do?
-```
+
+```css
 :host-context(.theme-light) h2 {
   background-color: red;
 }
@@ -141,10 +161,10 @@ let service = new DataService();
 #### Lifecycle Hooks Questions:
 
 * What is the possible order of lifecycle hooks.
-* When will ngInit be called?
-* How would you make use of onNgInit()?
-* What would you consider a thing you should be careful doing on onNgInit()?
-* What is the difference between onNgInit() and constructor() of a component?
+* When will ngOnInit be called?
+* How would you make use of ngOnInit()?
+* What would you consider a thing you should be careful doing on ngOnInit()?
+* What is the difference between ngOnInit() and constructor() of a component?
 
 #### Pipes Questions:
 
@@ -159,15 +179,19 @@ let service = new DataService();
 * Do you need a Routing Module? Why/not?
 * When does a lazy loaded module is loaded?
 * Below link doesn't work. Why? How do I fix it?
-```
+
+```html
 <div routerLink='product.id'></div>
 ```
 
 #### Observables/RxJS Questions:
 
 * What is the difference between an observable and a promise?
-* What are some of the angular 2 apis that are using observables?
-* How would you implement a [brush behavior](https://bl.ocks.org/mbostock/34f08d5e11952a80609169b7917d4172) using rxjs? 
+* What are some of the angular apis that are using observables?
+* How would you cache an observable data?
+* How would you implement a multiple api calls that needs to happen in order using rxjs?
+* How would you make sure an api call that needs to be called only once but with multiple conditions. Example: if you need to get some data in multiple routes but, once you get it, you can reuse it in the routes that needs it, therefor no need to make another call to your backend apis.
+* How would you implement a [brush behavior](https://bl.ocks.org/mbostock/34f08d5e11952a80609169b7917d4172) using rxjs?
 * How would you implement a color picker with rxjs?
 * If you need to respond to two different Observable/Subject with one callback function, how would you do it?(ex: if you need to change the url through route parameters and with prev/next buttons).
 
@@ -177,28 +201,52 @@ let service = new DataService();
 * How would you define a custom type?
 * What is the difference between an Interface and a Class?
 * First line below gives compile error, second line doesn't. Why?
-* What are Discriminated union types? 
+* What are Discriminated union types?
 * How do you define Object of Objects type in typescript?
 
-```
+```ts
 someService.someMethod(x);
 someService['someMethod'](x);
 ```
 
 #### Security Questions:
 
+...
 
+#### JavaScript Questions:
+
+* Explain the difference between var, let and const key words.
+* Could you make sure a const value is garbage collected?
+* Explain Object.assign and possible use cases.
+* Explain Object.freeze and possible use cases.
+* Explain the code below. How many times the createVal function is called?
+
+```ts
+function createVal(){
+  return Math.random();
+};
+
+function fun( val =  createVal()){
+  // Do something with val...
+}
+
+fun();
+fun(5);
+
+```
 
 #### Coding Questions:
 
 * What would these components render?
 
-```
-import {Component, ContentChildren, Directive, Input, QueryList} from '@angular/core';
+```ts
+import { Component, ContentChildren, Directive, Input, QueryList } from '@angular/core';
+
 @Directive({selector: 'pane'})
 export class Pane {
   @Input() id: string;
 }
+
 @Component({
   selector: 'tab',
   template: `
@@ -209,6 +257,7 @@ export class Tab {
   @ContentChildren(Pane) panes: QueryList<Pane>;
   get serializedPanes(): string { return this.panes ? this.panes.map(p => p.id).join(', ') : ''; }
 }
+
 @Component({
   selector: 'example-app',
   template: `
@@ -224,9 +273,7 @@ export class ContentChildrenComp {
   shouldShow = false;
   show() { this.shouldShow = true; }
 }
-
 ```
-
 
 #### Fun Questions:
 
@@ -235,12 +282,16 @@ export class ContentChildrenComp {
 * Who inspires you in the angular community?
 * Do you have any pet projects? What kind?
 * How did you design the architecture of your project?
-* What's your favorite feature of Angular 2.0?
+* What's your favorite feature of Angular?
 * How do you like your coffee?
-
 
 #### Contributors:
 * [Ayşegül Yönet](https://developers.google.com/experts/people/aysegul-yonet)
 * [Mohamad Atieh](https://github.com/MohamadAtieh)
 * [Jay Kan](https://github.com/JayKan)
 * [Matt Carpenter](https://github.com/mattcarp)
+* [Ryan Chenkie](https://github.com/chenkie)
+* [Shyam Chen](https://github.com/Shyam-Chen)
+* [Josep Sayol](https://github.com/jsayol)
+* [Tiep Phan](https://github.com/tieppt)
+* You?
